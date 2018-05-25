@@ -6,7 +6,7 @@ from __future__ import print_function
 import argparse
 import re
 
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 
 
 def main():
@@ -43,7 +43,7 @@ def main():
         with open(fname, 'r') as infile:
             data = infile.read()
         data = matcher.sub(args.substitute, data)
-        if args.write:
+        if args.inplace:
             with open(fname, 'w') as outfile:
                 outfile.write(data)
         else:

@@ -29,7 +29,7 @@ setup(
     description='Replacement for tr/sed replace in python',
     author='Noah Pendleton',
     author_email='2538614+noahp@users.noreply.github.com',
-    url='https://github.com/noahp/riptr',
+    url='https://github.com/noahp/python-riptr',
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
 

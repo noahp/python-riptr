@@ -6,7 +6,7 @@ from __future__ import print_function
 import argparse
 import re
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 def main():
@@ -21,8 +21,8 @@ def main():
     parser.add_argument('-s', '--substitute', metavar='REGEX', type=str,
                         help='Substitute regex, python syntax; backref groups per the --match arg.',
                         required=True)
-    parser.add_argument('-w', '--write', action="store_true",
-                        help="Write back to the input file instead of stdout")
+    parser.add_argument('-i', '--inplace', action="store_true",
+                        help="Edit files in place, instead of emitting to stdout")
     parser.add_argument('-d', '--dotall', action="store_true",
                         help="Set dotall on the regex")
     parser.add_argument('-l', '--multiline', action="store_true",

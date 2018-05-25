@@ -1,0 +1,5 @@
+build/
+dist/
+riptr.egg-info/
+*.pyc
+.eggs/

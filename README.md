@@ -8,7 +8,7 @@ Now deployed to pypi, install with:
 ```bash
 pip install riptr
 ```
-This adds the `riptr` and `rtr` cli tools to you python environment path.
+This adds the `riptr` and `rtr` cli tools to your python environment path.
 
 # Usage
 ```bash

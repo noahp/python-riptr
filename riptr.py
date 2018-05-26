@@ -6,7 +6,6 @@ RIP tr/sed. Python regex replacement utility.
 from __future__ import print_function
 import argparse
 import difflib
-import pathlib
 import re
 import sys
 
@@ -102,7 +101,7 @@ def main():
 
     for fname in args.file:
         outputter = args.outputmode
-        if fname is "-":
+        if fname == "-":
             if not sys.stdin.isatty():
                 indata = sys.stdin.read()
                 if outputter == "i" or outputter == "inplace":

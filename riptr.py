@@ -1,13 +1,16 @@
 #!/usr/bin/env python
+# coding: utf-8
 """
 RIP tr/sed. Python regex replacement utility.
 """
 from __future__ import print_function
 import argparse
 import difflib
+import pathlib
 import re
+import sys
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 
 def output_unified_diff(olddata, newdata, oldfile):
@@ -33,6 +36,11 @@ def output_inplace(olddata, newdata, oldfile):
     del olddata
     with open(oldfile, "w") as outfile:
         outfile.write(newdata)
+
+
+def output_none(olddata, newdata, oldfile):
+    """No output"""
+    del olddata, newdata, oldfile
 
 
 def main():
@@ -93,8 +101,20 @@ def main():
     matcher = re.compile(args.match, flags=flags)
 
     for fname in args.file:
-        with open(fname, "r") as infile:
-            indata = infile.read()
+        outputter = args.outputmode
+        if fname is "-":
+            if not sys.stdin.isatty():
+                indata = sys.stdin.read()
+                if outputter == "i" or outputter == "inplace":
+                    outputter = None
+            else:
+                # nothing on stdin 💁
+                continue
+        else:
+            with open(fname, "r") as infile:
+                indata = infile.read()
+
+        # perform the substitution
         outdata = matcher.sub(args.substitute, indata)
 
         # Map of outputters
@@ -105,9 +125,10 @@ def main():
             "p": output_unified_diff,
             "stdout": output_stdout,
             "s": output_stdout,
+            None: output_none,
         }
         # Output result
-        outputters[args.outputmode](indata, outdata, fname)
+        outputters[outputter](indata, outdata, fname)
 
 
 if __name__ == "__main__":

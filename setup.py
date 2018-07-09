@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Setup cli-authenticate package.
+Setup package.
 """
 import os
 import re
